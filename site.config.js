@@ -9,7 +9,7 @@ export default {
   wordmark: { heavy: 'Cyber', light: 'Hat' },
   domain: 'https://cyberh.at',
   description:
-    'Cyber Hat is a holding company backing specialised teams building the future of security.',
+    'Cyber Hat is a privately held group with a long-term interest in security.',
   themeColor: '#0a0f1c',
 
   /* ─── Languages ────────────────────────────────────────────────────── */
@@ -28,7 +28,7 @@ export default {
 
   /* ─── Footer ───────────────────────────────────────────────────────── */
   footer: {
-    tagline: 'A holding company for the long term.',
+    tagline: 'Built for the long term.',
     copyright: '© {{year}} Cyber Hat. All rights reserved.',
   },
 };
