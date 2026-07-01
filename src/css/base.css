@@ -1,0 +1,109 @@
+/*
+  base.css — reset, self-hosted fonts and global element defaults. Consumes the
+  design tokens from tokens.css (which loads before it). Loads second.
+
+  The stylesheet is split into ordered modules; the build links them in this
+  cascade-significant order:
+    tokens.css     — THE BRAND SEAM: colours, fonts, spacing (edit this to reskin)
+    base.css       — reset, @font-face, shared accent tokens, element globals
+    chrome.css     — fixed chrome: top nav, wordmark, section rail, toggles
+    layout.css     — hero, page headers, CTAs, section bands, shared cards
+    components.css — content components: steps, stats, info blocks, FAQ
+    footer.css     — site footer + scroll-reveal helper
+    responsive.css — breakpoints and no-JS fallbacks (must load last)
+*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*
+  Self-hosted, latin-subset web fonts. font-display: swap shows text immediately
+  in the metric-matched fallback below and swaps in the real font once it loads.
+  Because the fallback is sized to match, that swap causes no layout shift — and
+  the preload hints in the <head> make the real fonts available almost
+  immediately, so the swap is usually imperceptible.
+*/
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/dm-sans-latin-var.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/dm-sans-latin-italic-var.woff2') format('woff2');
+}
+
+/*
+  Metric-matched fallback faces. Each is Arial re-scaled (via size-adjust and
+  ascent/descent overrides derived from the real font's metrics) so it occupies
+  the exact same space as the web font — text renders in the matched fallback,
+  then swaps in with no layout shift.
+*/
+@font-face {
+  font-family: 'DM Sans Fallback';
+  src: local('Arial');
+  size-adjust: 104.531%;
+  ascent-override: 94.900%;
+  descent-override: 29.656%;
+  line-gap-override: 0%;
+}
+
+/* ─── Shared accent tokens (one accent, inherited for cohesive UI) ─── */
+.section {
+  --band-label: var(--accent);
+  --band-accent-strong: var(--accent);
+  --band-card-ring: var(--card-border);
+  --band-pop: var(--card-shadow);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+[id].section,
+header.hero {
+  scroll-margin-top: 28px;
+}
+
+body.site-ui {
+  font-family: var(--font-body);
+  background: var(--page-bg);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition:
+    background-color 0.15s var(--ease),
+    color 0.15s var(--ease);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}

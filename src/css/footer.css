@@ -1,0 +1,65 @@
+/*
+  footer.css — the site footer and the scroll-reveal fade-in helper.
+  Loads after components.css.
+*/
+
+.site-footer {
+  background: var(--section-bg-alt);
+  color: var(--text);
+  border-top: 1px solid var(--hairline);
+  padding: 56px 0 32px;
+}
+
+.site-footer a {
+  color: var(--text);
+  text-decoration-color: color-mix(in srgb, var(--text) 40%, transparent);
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+.footer-main {
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.footer-title {
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+.footer-main p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--hairline);
+  padding-top: 16px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ─── SCROLL REVEAL (subtle, no shadows) ─── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.45s var(--ease),
+    transform 0.45s var(--ease);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

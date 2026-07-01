@@ -1,0 +1,64 @@
+/*
+  tokens.css — THE BRAND SEAM. Cyber Hat: a security-grade palette of electric
+  cyan on deep midnight navy. Edit colours/fonts here to reskin; every other
+  module consumes these tokens. Loads first in the cascade.
+
+  Tokens are semantic and theme-aware: LIGHT values are the defaults on :root,
+  and [data-theme='dark'] overrides them for dark mode (resolved before first
+  paint by head.js — no flash).
+*/
+
+:root {
+  color-scheme: light dark;
+
+  /* ─── Fixed brand palette (theme-independent) ─────────────────────────── */
+  --accent-base: #17c3d6;   /* signature cyan — accent fields + buttons */
+  --accent-deep: #0b7c8a;   /* legible deep cyan on light backgrounds */
+  --accent-lift: #38e3d6;   /* bright cyan for dark backgrounds */
+  --alert: #e5484d;
+  --alert-soft: rgba(229, 72, 77, 0.12);
+  --ink: #0a0f1c;           /* deep midnight navy — solid buttons, dark fields */
+  --white: #ffffff;
+  --on-accent: #05252b;     /* text on cyan fields (both themes) */
+
+  /* ─── Semantic theme tokens — LIGHT defaults ─────────────────────────── */
+  --page-bg: #f7f9fc;
+  --section-bg: #ffffff;
+  --section-bg-alt: #eef2f8;
+  --text: #0b1220;
+  --text-muted: #56617a;
+  --card-bg: #ffffff;
+  --card-border: rgba(11, 18, 32, 0.1);
+  --card-shadow:
+    0 1px 2px rgba(11, 18, 32, 0.04),
+    0 12px 34px rgba(11, 18, 32, 0.08);
+  --hairline: rgba(11, 18, 32, 0.1);
+  --accent: var(--accent-deep);
+
+  --danger: var(--alert);
+  --danger-soft: var(--alert-soft);
+  --accent-bright: var(--accent-lift);
+
+  /* ─── Type + metrics ─────────────────────────────────────────────────── */
+  --font-display: 'DM Sans', 'DM Sans Fallback', system-ui, sans-serif;
+  --font-body: 'DM Sans', 'DM Sans Fallback', system-ui, sans-serif;
+  --max-width: min(1180px, 100%);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ─── DARK THEME ─── */
+:root[data-theme='dark'],
+:root.no-js:has(#themeDark:checked) {
+  --page-bg: #070b14;
+  --section-bg: #0b1220;
+  --section-bg-alt: #0f1626;
+  --text: #e7edf6;
+  --text-muted: #94a2b8;
+  --card-bg: #111a2b;
+  --card-border: rgba(255, 255, 255, 0.09);
+  --card-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 18px 40px rgba(0, 0, 0, 0.55);
+  --hairline: rgba(255, 255, 255, 0.09);
+  --accent: var(--accent-lift);
+}

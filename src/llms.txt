@@ -1,0 +1,12 @@
+# Cyber Hat
+
+> Cyber Hat is a privately held group supporting a portfolio of specialised
+> security teams. We provide long-term capital, operational support, and a
+> trusted network to founders working on hard problems in security.
+
+## Pages
+- [Home](https://cyberh.at/): Overview of Cyber Hat's approach, focus areas, and contact details.
+
+## Contact
+- General: hello@cyberh.at
+- Security disclosures: security@cyberh.at

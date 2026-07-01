@@ -1,0 +1,187 @@
+/*
+  responsive.css — breakpoint overrides and no-JS fallbacks. Must load last:
+  these rules override the component defaults from the other modules.
+*/
+
+@media (max-width: 900px) {
+  .top-nav {
+    position: fixed;
+    background: var(--section-bg);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .top-nav .nav-logo,
+  .top-nav .nav-links a {
+    color: var(--text);
+  }
+
+  .top-nav .nav-links a:hover,
+  .top-nav .nav-links a.active {
+    color: var(--accent);
+  }
+
+  .section-rail {
+    display: none;
+  }
+
+  [id].section,
+  header.hero {
+    scroll-margin-top: 76px;
+  }
+
+  .steps-grid,
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    background: var(--section-bg);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 22px;
+    gap: 16px;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  /* Checkbox-hack: the <label class="nav-toggle"> flips this checkbox, no JS. */
+  .nav-right:has(.nav-toggle-cb:checked) .nav-links {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-logo {
+    font-size: clamp(0.9rem, 4vw, 1.25rem);
+    max-width: min(100%, calc(100vw - 120px));
+  }
+
+  .hero {
+    padding: 78px 0 56px;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-ctas .cta-btn {
+    flex: 1 1 100%;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   NO-JAVASCRIPT FALLBACKS
+   <html> keeps the "no-js" class until head.js swaps it for "js". These rules
+   keep the site usable and correctly themed when scripts are disabled.
+   ───────────────────────────────────────────── */
+
+/* The JS toggle + back-to-top only do anything with JS; the no-JS build gets
+   the CSS-only Auto/Light/Dark radio control instead. */
+.no-js .theme-toggle,
+.no-js .back-to-top,
+.theme-switch {
+  display: none !important;
+}
+
+/* Follow the OS colour scheme when JS can't resolve [data-theme] — unless the
+   visitor has explicitly picked "Light" via the no-JS control. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]):not(:has(#themeLight:checked)) {
+    --page-bg: #0f1216;
+    --section-bg: #14181d;
+    --section-bg-alt: #1a1f25;
+    --text: #eef1f3;
+    --text-muted: #9aa6b0;
+    --card-bg: #1b212a;
+    --card-border: rgba(255, 255, 255, 0.12);
+    --card-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 16px 36px rgba(0, 0, 0, 0.5);
+    --hairline: rgba(255, 255, 255, 0.1);
+    --accent: var(--accent-lift);
+  }
+}
+
+/* No-JS, CSS-only theme control (Auto / Light / Dark). Does not persist across
+   navigation because that needs JS/storage. */
+.no-js .theme-switch {
+  display: inline-flex !important;
+  position: fixed;
+  left: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  align-items: stretch;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  z-index: 1090;
+}
+
+.theme-switch-legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.theme-switch-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.theme-switch-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-muted);
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.theme-switch-label:hover {
+  color: var(--text);
+}
+
+.theme-switch-input:checked + .theme-switch-label {
+  background: var(--accent-base);
+  color: var(--on-accent);
+}
+
+.theme-switch-input:focus-visible + .theme-switch-label {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

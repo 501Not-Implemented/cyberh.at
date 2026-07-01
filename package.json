@@ -1,0 +1,15 @@
+{
+  "name": "cyberhat",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cyber Hat — corporate site (built on the config-driven static-site starter).",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "python3 -m http.server 8000 --directory dist",
+    "dev": "node build.js && python3 -m http.server 8000 --directory dist"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0"
+  }
+}
