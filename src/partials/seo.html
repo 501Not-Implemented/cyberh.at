@@ -13,3 +13,20 @@
   <meta name="twitter:title" content="{{title}}">
   <meta name="twitter:description" content="{{description}}">
   <meta name="twitter:image" content="{{domain}}/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{siteName}}",
+    "url": "{{domain}}/",
+    "logo": "{{domain}}/og-image.png",
+    "description": "{{description}}",
+    "email": "hello@cyberh.at",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "security",
+      "email": "security@cyberh.at",
+      "url": "{{domain}}/.well-known/security.txt"
+    }
+  }
+  </script>
