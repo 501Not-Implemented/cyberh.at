@@ -158,28 +158,16 @@
   margin: 14px 0;
 }
 
-.pgp-fpr code,
-.pgp-cmd code {
+.pgp-fpr code {
   font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 0.82rem;
   color: var(--text);
-}
-
-.pgp-fpr code {
   display: inline-block;
   padding: 8px 12px;
   border: 1px solid var(--hairline);
   background: var(--section-bg-alt);
   letter-spacing: 0.04em;
   word-break: break-word;
-}
-
-.pgp-cmd {
-  margin: 10px 0 14px;
-  padding: 10px 12px;
-  border: 1px solid var(--hairline);
-  background: var(--section-bg-alt);
-  overflow-x: auto;
 }
 
 /* ─── CONTACT NOTE ─── */

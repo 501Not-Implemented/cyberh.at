@@ -47,7 +47,7 @@ const CSS_ORDER = [
 /* Verbatim assets. robots.txt + sitemap.xml are generated, not copied.
    .well-known carries security.txt (RFC 9116) and the OpenPGP Web Key
    Directory; pgp-key.asc is the armored public key linked from the site. */
-const STATIC_ASSETS = ['fonts', 'favicon.svg', 'og-image.png', 'llms.txt', '.nojekyll', '.well-known', 'pgp-key.asc'];
+const STATIC_ASSETS = ['fonts', 'favicon.svg', 'favicon-32x32.png', 'favicon-16x16.png', 'apple-touch-icon.png', 'og-image.png', 'llms.txt', '.nojekyll', '.well-known', 'pgp-key.asc'];
 
 const INCLUDE_RE = /<!--\s*include\s+([\w-]+)((?:\s+[\w-]+=(?:"[^"]*"|'[^']*'))*)\s*-->/g;
 const ATTR_RE = /([\w-]+)=(?:"([^"]*)"|'([^']*)')/g;
