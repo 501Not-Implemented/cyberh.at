@@ -1,0 +1,16 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Contact: mailto:security@cyberh.at
+Expires: 2027-07-01T00:00:00.000Z
+Encryption: https://cyberh.at/pgp-key.asc
+Encryption: openpgp4fpr:807D04528CEEF3822D228BB6982C9234D7CC75E4
+Preferred-Languages: en
+Canonical: https://cyberh.at/.well-known/security.txt
+-----BEGIN PGP SIGNATURE-----
+
+iIkEARYIADEWIQSAfQRSjO7zgi0ii7aYLJI018x15AUCakY+kBMcc2VjdXJpdHlA
+Y3liZXJoLmF0AAoJEJgskjTXzHXk4wwA/0peFSUHGVyARuKH9JOvDVLg5gvlio9O
+Ic/5oXPlz4iaAP4vGHo73AZbcEQT0Idf7p/uZqB8wVxevW4Lo9VVK4+hCQ==
+=eiIk
+-----END PGP SIGNATURE-----

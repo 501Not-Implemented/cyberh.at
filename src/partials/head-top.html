@@ -1,5 +1,9 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Locked-down CSP: everything off by default, scripts/assets same-origin
+       only, and the build-time-inlined stylesheet allowed by its hash. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'sha256-{{styleHash}}'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="{{themeColor}}">
   <!-- Render-blocking on purpose: sets js/theme classes before first paint -->
   <script src="/head.js"></script>

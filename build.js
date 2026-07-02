@@ -21,6 +21,7 @@
 */
 
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { transform } from 'esbuild';
 import config from './site.config.js';
@@ -43,8 +44,10 @@ const CSS_ORDER = [
   'responsive.css',
 ];
 
-/* Verbatim assets. robots.txt + sitemap.xml are generated, not copied. */
-const STATIC_ASSETS = ['fonts', 'favicon.svg', 'llms.txt', '.nojekyll'];
+/* Verbatim assets. robots.txt + sitemap.xml are generated, not copied.
+   .well-known carries security.txt (RFC 9116) and the OpenPGP Web Key
+   Directory; pgp-key.asc is the armored public key linked from the site. */
+const STATIC_ASSETS = ['fonts', 'favicon.svg', 'og-image.png', 'llms.txt', '.nojekyll', '.well-known', 'pgp-key.asc'];
 
 const INCLUDE_RE = /<!--\s*include\s+([\w-]+)((?:\s+[\w-]+=(?:"[^"]*"|'[^']*'))*)\s*-->/g;
 const ATTR_RE = /([\w-]+)=(?:"([^"]*)"|'([^']*)')/g;
@@ -68,6 +71,9 @@ function navLinksHtml(lang) {
     .join('\n          ');
 }
 
+/* CSP hash of the inlined stylesheet, set once the CSS bundle is built. */
+let styleHash = '';
+
 /* Values available to every partial as {{key}} (per-include attrs override). */
 function globalsFor(lang) {
   const prefix = langPrefix(lang);
@@ -83,6 +89,7 @@ function globalsFor(lang) {
     wordmarkHeavy: config.wordmark.heavy,
     wordmarkLight: config.wordmark.light,
     navLinks: navLinksHtml(lang),
+    styleHash,
     footerTagline: config.footer.tagline,
     footerCopyright: config.footer.copyright.replace(/\{\{year\}\}/g, YEAR),
   };
@@ -187,11 +194,15 @@ async function copyStatic() {
       cp(path.join(SRC, asset), path.join(DIST, asset), { recursive: true })
     )
   );
+  /* RFC 9116 also allows /security.txt at the root; GitHub Pages can't
+     redirect, so serve the same signed file from both locations. */
+  await cp(path.join(SRC, '.well-known', 'security.txt'), path.join(DIST, 'security.txt'));
 }
 
 await rm(DIST, { recursive: true, force: true });
 await mkdir(DIST, { recursive: true });
 const css = await buildCss();
+styleHash = createHash('sha256').update(css).digest('base64');
 await Promise.all([
   ...LANGS.flatMap(lang => PAGES.map(file => renderPage(file, lang, css))),
   buildJs('head.js'),

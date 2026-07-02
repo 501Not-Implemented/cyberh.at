@@ -6,6 +6,20 @@
   <!-- include head-assets -->
 </head>
 <body class="site-ui">
+<!--
+
+        .------------.
+        |            |
+     ___|____________|___
+    (____________________)
+
+    Reading the source? Good instinct.
+
+    OpenPGP:      807D 0452 8CEE F382 2D22  8BB6 982C 9234 D7CC 75E4
+    Disclosures:  https://cyberh.at/.well-known/security.txt
+
+-->
+  <a class="skip-link" href="#main">Skip to content</a>
   <!-- include nav -->
 
   <aside class="section-rail" id="sectionRail" aria-hidden="true">
@@ -14,6 +28,8 @@
     <a class="rail-link" href="#focus"><span class="rail-label">Focus</span><span class="rail-dot"></span></a>
     <a class="rail-link" href="#contact"><span class="rail-label">Contact</span><span class="rail-dot"></span></a>
   </aside>
+
+  <main id="main">
 
   <header class="hero">
     <div class="hero-inner">
@@ -101,9 +117,20 @@
       <div class="hero-ctas">
         <a class="cta-btn cta-btn--accent" href="mailto:hello@cyberh.at">hello@cyberh.at</a>
       </div>
-      <p class="contact-note">Security disclosures: <a href="mailto:security@cyberh.at">security@cyberh.at</a></p>
+      <p class="contact-note">Security disclosures: <a href="mailto:security@cyberh.at">security@cyberh.at</a> &middot; <a href="/.well-known/security.txt">security.txt</a></p>
+
+      <div class="pgp-block">
+        <h3>PGP</h3>
+        <p>Sensitive reports can be encrypted to our OpenPGP key before sending.</p>
+        <p class="pgp-fpr" aria-label="OpenPGP key fingerprint"><code>807D 0452 8CEE F382 2D22&ensp;8BB6 982C 9234 D7CC 75E4</code></p>
+        <p class="pgp-actions"><a href="/pgp-key.asc">Download the key</a>, or fetch it via Web Key Directory:</p>
+        <pre class="pgp-cmd"><code>gpg --locate-keys security@cyberh.at</code></pre>
+        <p class="pgp-note">Our <a href="/.well-known/security.txt">security.txt</a> is signed with the same key, so you can verify you're talking to us.</p>
+      </div>
     </div>
   </section>
+
+  </main>
 
   <!-- include footer -->
 </body>

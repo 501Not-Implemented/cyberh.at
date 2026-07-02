@@ -92,6 +92,19 @@
   }
 }
 
+/* ─── REDUCED MOTION: no smooth scrolling, no scroll-reveal animation ─── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ─────────────────────────────────────────────
    NO-JAVASCRIPT FALLBACKS
    <html> keeps the "no-js" class until head.js swaps it for "js". These rules

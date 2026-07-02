@@ -4,6 +4,26 @@
   toggle, and the CSS-only mobile hamburger. Loads after base.css.
 */
 
+/* ─── Skip link: visually hidden until keyboard-focused ─── */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2000;
+  padding: 10px 16px;
+  background: var(--accent-base);
+  color: var(--on-accent);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+  color: var(--on-accent);
+}
+
 /* ─── Long-form navigation aid: vertical section rail ─── */
 .section-rail {
   position: fixed;

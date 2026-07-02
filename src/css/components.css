@@ -127,6 +127,61 @@
   color: var(--danger);
 }
 
+/* ─── PGP / ENCRYPTED CONTACT ─── */
+.pgp-block {
+  margin-top: 40px;
+  padding: 26px 28px;
+  border: 1px solid var(--hairline);
+  background: var(--card-bg);
+  max-width: 640px;
+}
+
+.pgp-block h3 {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.pgp-block p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.pgp-block a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.pgp-fpr {
+  margin: 14px 0;
+}
+
+.pgp-fpr code,
+.pgp-cmd code {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+.pgp-fpr code {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid var(--hairline);
+  background: var(--section-bg-alt);
+  letter-spacing: 0.04em;
+  word-break: break-word;
+}
+
+.pgp-cmd {
+  margin: 10px 0 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--hairline);
+  background: var(--section-bg-alt);
+  overflow-x: auto;
+}
+
 /* ─── CONTACT NOTE ─── */
 .contact-note {
   margin-top: 22px;

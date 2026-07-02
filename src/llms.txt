@@ -10,3 +10,8 @@
 ## Contact
 - General: hello@cyberh.at
 - Security disclosures: security@cyberh.at
+
+## Security
+- security.txt (RFC 9116, PGP-signed): https://cyberh.at/.well-known/security.txt
+- OpenPGP key: https://cyberh.at/pgp-key.asc (also via Web Key Directory)
+- OpenPGP fingerprint: 807D 0452 8CEE F382 2D22 8BB6 982C 9234 D7CC 75E4

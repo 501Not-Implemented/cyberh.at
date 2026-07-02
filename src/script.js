@@ -55,7 +55,10 @@ function initScrollProgress() {
     const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
     if (railFill) railFill.style.setProperty('--rail-progress', ratio.toFixed(4));
     const pastHero = window.scrollY > window.innerHeight * 0.6;
-    if (sectionRail) sectionRail.classList.toggle('visible', pastHero);
+    if (sectionRail) {
+      sectionRail.classList.toggle('visible', pastHero);
+      sectionRail.setAttribute('aria-hidden', String(!pastHero));
+    }
     if (backToTop) backToTop.classList.toggle('visible', window.scrollY > window.innerHeight * 1.2);
   };
 
@@ -64,7 +67,10 @@ function initScrollProgress() {
   onScroll();
 
   if (backToTop) {
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    backToTop.addEventListener('click', () => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
   }
 }
 
@@ -86,8 +92,16 @@ function initScrollSpy() {
     entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        sectionLinkMap.forEach(links => links.forEach(l => l.classList.remove('active')));
-        sectionLinkMap.get(entry.target)?.forEach(l => l.classList.add('active'));
+        sectionLinkMap.forEach(links =>
+          links.forEach(l => {
+            l.classList.remove('active');
+            l.removeAttribute('aria-current');
+          })
+        );
+        sectionLinkMap.get(entry.target)?.forEach(l => {
+          l.classList.add('active');
+          l.setAttribute('aria-current', 'page');
+        });
       });
     },
     { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
