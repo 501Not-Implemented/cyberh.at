@@ -1,3 +1,6 @@
 node_modules/
 dist/
 .DS_Store
+
+# Separate repo, deployed to mta-sts.cyberh.at
+mta-sts-host/
