@@ -23,6 +23,7 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
+import { Resvg } from '@resvg/resvg-js';
 import { transform } from 'esbuild';
 import config from './site.config.js';
 
@@ -47,7 +48,13 @@ const CSS_ORDER = [
 /* Verbatim assets. robots.txt + sitemap.xml are generated, not copied.
    .well-known carries security.txt (RFC 9116) and the OpenPGP Web Key
    Directory; pgp-key.asc is the armored public key linked from the site. */
-const STATIC_ASSETS = ['fonts', 'favicon.svg', 'favicon-32x32.png', 'favicon-16x16.png', 'apple-touch-icon.png', 'og-image.png', 'llms.txt', '.nojekyll', '.well-known', 'pgp-key.asc'];
+const STATIC_ASSETS = ['fonts', 'favicon.svg', 'og-image.png', 'llms.txt', '.nojekyll', '.well-known', 'pgp-key.asc'];
+
+const FAVICON_SIZES = [
+  [16, 'favicon-16x16.png'],
+  [32, 'favicon-32x32.png'],
+  [180, 'apple-touch-icon.png'],
+];
 
 const INCLUDE_RE = /<!--\s*include\s+([\w-]+)((?:\s+[\w-]+=(?:"[^"]*"|'[^']*'))*)\s*-->/g;
 const ATTR_RE = /([\w-]+)=(?:"([^"]*)"|'([^']*)')/g;
@@ -188,6 +195,19 @@ async function buildSeoFiles() {
   );
 }
 
+async function buildFavicons() {
+  const svg = await readFile(path.join(SRC, 'favicon.svg'));
+  await Promise.all(
+    FAVICON_SIZES.map(([size, name]) => {
+      const resvg = new Resvg(svg, {
+        fitTo: { mode: 'width', value: size },
+        background: 'rgba(0,0,0,0)',
+      });
+      return writeFile(path.join(DIST, name), resvg.render().asPng());
+    })
+  );
+}
+
 async function copyStatic() {
   await Promise.all(
     STATIC_ASSETS.map(asset =>
@@ -208,6 +228,7 @@ await Promise.all([
   buildJs('head.js'),
   buildJs('script.js'),
   buildSeoFiles(),
+  buildFavicons(),
   copyStatic(),
 ]);
 console.log(`Built ${PAGES.length * LANGS.length} page(s) [${LANGS.join(', ')}] → ${DIST}/`);

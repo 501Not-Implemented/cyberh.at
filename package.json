@@ -10,6 +10,7 @@
     "dev": "node build.js && python3 -m http.server 8000 --directory dist"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "esbuild": "^0.28.0"
   }
 }

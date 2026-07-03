@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0a0f1c"/>
-  <text x="32" y="44" text-anchor="middle" textLength="46" lengthAdjust="spacingAndGlyphs"
-        font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif"
-        font-weight="800" font-size="34" fill="#17c3d6">CH</text>
+  <ellipse cx="32" cy="44" rx="26" ry="7" fill="#17c3d6"/>
+  <path fill="#17c3d6" d="M20 44V31c0-8.5 5.4-15 12-16.5 6.6 1.5 12 8 12 16.5v13H20z"/>
+  <rect x="20" y="35" width="24" height="5" rx="1" fill="#0b7c8a"/>
 </svg>
